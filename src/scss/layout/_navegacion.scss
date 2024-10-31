@@ -1,56 +1,99 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
 
-.barra{
+.derecha {
     display: flex;
     flex-direction: column;
-    padding-top: 3rem;
+    align-items: center;
 
-    @include m.tablet{
+
+    @include m.tablet {
+        align-items: flex-end;
+    }
+
+    .dark-mode-boton {
+        width: 3rem;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        filter: invert(100%);
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        @include m.tablet {
+            margin-top: 0;
+        }
+    }
+}
+
+.barra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    @include m.tablet {
         flex-direction: row;
         justify-content: space-between;
-        
+        align-items: center;
     }
 
     img {
         width: 30rem; /* O el tamaño que desees */
         height: auto; /* Mantener la relación de aspecto */
     }
-    
 }
 
-.navegacion{
+.navegacion {
+
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: visibility .3s ease-in-out, opacity .5s linear, height .5s linear; 
+
     @include m.tablet {
         display: flex;
         align-items: center;
+        opacity: 1;
+        visibility: visible;
     }
-    a{
+    
+    a {
         color: v.$blanco;
         text-decoration: none;
         font-size: 2.2rem;
         display: block;
         text-align: center;
-        @include m.tablet{
+
+        @include m.tablet {
             margin-right: 2rem;
             font-size: 1.8rem;
 
-            &:last-of-type{
+            &:last-of-type {
                 margin-right: 0;
             }
+        }
+
+        &:hover {
+            color: v.$verde;
         }
     }
 }
 
-.contenido-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
-    h1 {
-        text-align: left;
-        color: v.$blanco;
-        font-weight: v.$bold;
-        line-height: 2;
-        max-width: 60rem;
+/** Menu de hamburguesa **/
+.mobile-menu {
+    @include m.tablet {
+        display: none;
     }
+
+    img {
+        width: 5rem;
+    }
+}
+
+.mostrar {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
 }
